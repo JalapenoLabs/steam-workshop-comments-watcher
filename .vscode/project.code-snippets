@@ -1,0 +1,13 @@
+{
+	// For more information visit https://code.visualstudio.com/docs/editor/userdefinedsnippets
+	"copyright": {
+		"prefix": [
+			"copyright",
+			"jalapenolabs copyright"
+		],
+		"body": [
+			"$LINE_COMMENT Copyright © $CURRENT_YEAR Jalapeno Labs\n",
+		],
+		"description": "Jalapeno Labs copyright header for the tops of files"
+	}
+}

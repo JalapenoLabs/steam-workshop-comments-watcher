@@ -1,0 +1,17 @@
+{
+    // ESLint formatting on save settings:
+    "eslint.format.enable": true,
+    "eslint.validate": [
+        "typescript"
+    ],
+    "[typescript]": {
+        "editor.codeActionsOnSave": {
+            "source.fixAll.eslint": "always"
+        },
+        "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+        // Max length ruler:
+        "editor.rulers": [
+            120
+        ]
+    }
+}
