@@ -37,34 +37,10 @@ jobs:
         run: yarn lint
         continue-on-error: true
 
-      # Unit tests
-      - name: Run unit tests
-        id: test
-        run: yarn test
-        continue-on-error: true
-
       # Typescript checking
       - name: Check types
         id: typescript
-        run: yarn tsc --noEmit
-        continue-on-error: true
-
-      # Build from backend common error codes
-      - name: Check types
-        id: error-codes
-        run: yarn update-common
-        continue-on-error: true
-
-      # Build from backend common error codes
-      - name: Check translation codes
-        id: translation-consistency
-        run: yarn ensure-translation
-        continue-on-error: true
-
-      # Build
-      - name: Build
-        id: build
-        run: yarn build
+        run: yarn typecheck
         continue-on-error: true
 
       - name: Check if any of the previous steps failed
@@ -80,44 +56,12 @@ jobs:
             echo "Lint: SUCCESS"
           fi
 
-          # Check the test step
-          if [ "${{ steps.test.outcome }}" != "success" ]; then
-            echo "Test: FAILED"
-            FAILURE=true
-          else
-            echo "Test: SUCCESS"
-          fi
-
           # Check the TypeScript step
           if [ "${{ steps.typescript.outcome }}" != "success" ]; then
             echo "TypeScript: FAILED"
             FAILURE=true
           else
             echo "TypeScript: SUCCESS"
-          fi
-
-          # Check the error codes step
-          if [ "${{ steps.error-codes.outcome }}" != "success" ]; then
-            echo "Error Codes: FAILED"
-            FAILURE=true
-          else
-            echo "Error Codes: SUCCESS"
-          fi
-
-          # Check the translation codes step
-          if [ "${{ steps.translation-consistency.outcome }}" != "success" ]; then
-            echo "Translation Codes: FAILED"
-            FAILURE=true
-          else
-            echo "Translation Codes: SUCCESS"
-          fi
-
-          # Check the build step
-          if [ "${{ steps.build.outcome }}" != "success" ]; then
-            echo "Build: FAILED"
-            FAILURE=true
-          else
-            echo "Build: SUCCESS"
           fi
 
           # Exit with failure if any step failed

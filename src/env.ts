@@ -7,7 +7,7 @@ import { httpUrlRegex, steamWorkshopIdRegex } from './regex'
 
 export const POLL_INTERVAL_MS = process.env.POLL_INTERVAL_MS
   ? parseInt(process.env.POLL_INTERVAL_MS)
-  : 360 * 5 // Defaults to 5 minutes
+  : 360 * 5 * 1_000 // Defaults to 5 minutes
 
 export const BLACKLIST_USERS: Record<string, boolean> = (process.env.BLACKLIST_USERS?.split(',') || [])
   .filter(Boolean)
