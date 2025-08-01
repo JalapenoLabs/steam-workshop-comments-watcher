@@ -56,6 +56,7 @@ ${chalk.gray('>')} ${chalk.white(comment.content)}
         limit: 3,
         methods: [ 'post' ],
         statusCodes: [ 429, 500, 502, 503, 504 ],
+        delay: (attemptCount) => attemptCount * 2_500,
       },
       timeout: 10_000,
       throwHttpErrors: false,
