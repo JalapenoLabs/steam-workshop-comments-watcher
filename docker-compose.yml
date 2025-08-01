@@ -10,30 +10,9 @@ services:
       - yarn.lock:/app/yarn.lock
       - tsconfig.json:/app/tsconfig.json
       - src/:/app/src/
+      - ./.cache:/app/.cache
     environment:
       NODE_ENV: development
       WEBHOOK_URL: ${WEBHOOK_URL}
       WORKSHOP_PAGES: ${WORKSHOP_PAGES}
       BLACKLIST_USERS: ${BLACKLIST_USERS}
-      # DATABASE_URL: postgres://$DB_USER:$DB_PASSWORD@database:5432/$DB_DEFAULT
-
-#   database:
-#     image: postgres:17
-#     restart: unless-stopped
-#     container_name: steamworkshop_watcher_postgres
-#     environment:
-#       POSTGRES_USER: ${DB_USER}
-#       POSTGRES_PASSWORD: ${DB_PASSWORD}
-#       POSTGRES_DB: ${DB_DEFAULT}
-#     volumes:
-#       - postgres_data:/var/lib/postgresql/data
-#     healthcheck:
-#       test: ["CMD-SHELL", "pg_isready -U $DB_USER"]
-#       interval: 2s
-#       timeout: 1s
-#       retries: 5
-#       start_period: 2s
-
-# volumes:
-#   postgres_data:
-#     name: steamworkshop_watcher_postgres_data
